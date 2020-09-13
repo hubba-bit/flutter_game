@@ -1,0 +1,96 @@
+// The deck of cards which accept the final cards (Ace to King)
+import 'package:flutter/material.dart';
+import 'package:maufriends/common/uiCard.dart';
+import 'package:maufriends/entities/PlayerCard.dart';
+
+import 'enums.dart';
+
+typedef Null CardAcceptCallback(List<PlayerCard> card, int fromIndex);
+
+class EmptyCardDeck extends StatefulWidget {
+  final CardSuit cardSuit;
+  final List<PlayerCard> cardsAdded;
+  final CardAcceptCallback onCardAdded;
+  final int columnIndex;
+
+  EmptyCardDeck({
+    @required this.cardSuit,
+    @required this.cardsAdded,
+    @required this.onCardAdded,
+    this.columnIndex,
+  });
+
+  @override
+  _EmptyCardDeckState createState() => _EmptyCardDeckState();
+}
+
+class _EmptyCardDeckState extends State<EmptyCardDeck> {
+  @override
+  Widget build(BuildContext context) {
+    return DragTarget<Map>(
+      builder: (context, listOne, listTwo) {
+        return widget.cardsAdded.length == 0
+            ? Opacity(
+                opacity: 0.7,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: Colors.white,
+                  ),
+                  height: 60.0,
+                  width: 40,
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Center(
+                          child: Container(
+                            height: 20.0,
+                            child: _suitToImage(),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            : TransformedCard(
+                playerCard: widget.cardsAdded.last,
+              );
+      },
+      onWillAccept: (value) {
+        PlayerCard cardAdded = value["cards"].last;
+
+        if (cardAdded.suit == widget.cardSuit) {
+          if (CardType.values.indexOf(cardAdded.type) ==
+              widget.cardsAdded.length) {
+            return true;
+          }
+        }
+
+        return false;
+      },
+      onAccept: (value) {
+        widget.onCardAdded(
+          value["cards"],
+          value["fromIndex"],
+        );
+      },
+    );
+  }
+
+  Image _suitToImage() {
+    switch (widget.cardSuit) {
+      case CardSuit.hearts:
+        return Image.asset('images/hearts.png');
+      case CardSuit.diamonds:
+        return Image.asset('images/diamonds.png');
+      case CardSuit.clubs:
+        return Image.asset('images/clubs.png');
+      case CardSuit.spades:
+        return Image.asset('images/spades.png');
+      default:
+        return null;
+    }
+  }
+}

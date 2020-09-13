@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "382921478921",
+    "firebase_url": "https://maufriends-6fe55.firebaseio.com",
+    "project_id": "maufriends-6fe55",
+    "storage_bucket": "maufriends-6fe55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382921478921:android:4aca165c52ecf57a0e39d8",
+        "android_client_info": {
+          "package_name": "com.usmanniqbal.maufriends"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "382921478921-ct38u7vik82gj44vjeouetg04uujd9sa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.usmanniqbal.maufriends",
+            "certificate_hash": "e1bbd1057a6c2c228d15563057003f8ec54cce8d"
+          }
+        },
+        {
+          "client_id": "382921478921-qv1eq899gtr15oojiah9scphk19fitd4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzucCBBT_I74CYtEeJ9ncc8fKC4yIRZNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "382921478921-qv1eq899gtr15oojiah9scphk19fitd4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
